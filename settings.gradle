@@ -1,0 +1,7 @@
+include ':app', ':lab2', ':lab3', ':lab4', ':lab5', ':lab6', ':lab7'
+project(':lab2').projectDir = new File('app2')
+project(':lab3').projectDir = new File('app3')
+project(':lab4').projectDir = new File('app4')
+project(':lab5').projectDir = new File('app5')
+project(':lab6').projectDir = new File('app6')
+project(':lab7').projectDir = new File('app7')
