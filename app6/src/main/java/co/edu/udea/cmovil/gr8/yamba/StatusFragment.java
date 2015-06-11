@@ -25,10 +25,6 @@ import android.widget.Toast;
 import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StatusFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "StatusActivity";

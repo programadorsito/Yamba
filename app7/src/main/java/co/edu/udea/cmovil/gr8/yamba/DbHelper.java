@@ -7,8 +7,7 @@ import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper {
     private static final String TAG = DbHelper.class.getSimpleName();
     public DbHelper(Context context) {
-        super(context, StatusContract.DB_NAME, null,
-                StatusContract.DB_VERSION);
+        super(context, StatusContract.DB_NAME, null,StatusContract.DB_VERSION);
     }
 
     @Override

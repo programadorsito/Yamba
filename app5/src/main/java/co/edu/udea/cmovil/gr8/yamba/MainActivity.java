@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
+    
     private static final String TAG = "MainActivity";
 
     @Override

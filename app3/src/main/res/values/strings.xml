@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Yamba-Gr8</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Cambios</string>
     <string name="button_tweet">Tweet</string>
-    <string name="hint_status">What\'s going on?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_status">Que pasa brother?</string>
     <string name="username">Nombre Usuario</string>
     <string name="password">Contraseña</string>
     <string name="titleUsername">Nombre de usuario</string>
-    <string name="summaryUsername">Este es el nomrbed e usuario</string>
+    <string name="summaryUsername">Este es el nombre e usuario</string>
     <string name="summaryPassword">Esta es la contraseña</string>
     <string name="tweet">Tweet</string>
     <string name="refresh">Actualizar</string>
-    <string name="purge">Purge</string>
+    <string name="purge">Eliminar</string>
     <string name="status_update">Estado Actualizacion</string>
 </resources>

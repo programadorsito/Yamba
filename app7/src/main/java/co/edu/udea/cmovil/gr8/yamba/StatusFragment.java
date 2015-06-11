@@ -26,9 +26,6 @@ import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StatusFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "StatusActivity";
@@ -73,8 +70,6 @@ public class StatusFragment extends Fragment implements View.OnClickListener {
                     textCount.setTextColor(Color.RED);
                 else
                     textCount.setTextColor(defaultTextColor);
-
-
             }
         });
 
@@ -153,6 +148,7 @@ public class StatusFragment extends Fragment implements View.OnClickListener {
                 return "Se posteo bien";
             } catch (YambaClientException ex) {
                 ex.printStackTrace();
+                Toast.makeText(getActivity(), "Error al enviar, posiblemente no se haya podido establecer la conexion" , Toast.LENGTH_LONG).show();
                 Log.e(TAG, "error al enviar");
                 return "Fallo al postear";
             }

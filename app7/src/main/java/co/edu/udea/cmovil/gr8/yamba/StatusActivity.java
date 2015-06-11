@@ -11,9 +11,9 @@ public class StatusActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Check if this activity was created before
+        
         if (savedInstanceState == null) {
-            // Create a fragment
+            
             StatusFragment fragment = new StatusFragment();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

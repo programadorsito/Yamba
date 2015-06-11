@@ -29,24 +29,25 @@ public class RefreshService extends IntentService {
         Log.d(TAG, "onCreated");
     }
 
-    // Executes on a worker thread
     @Override
     protected void onHandleIntent(Intent intent) {
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        
         String username = sharedPreferences.getString("username", "");
         String password = sharedPreferences.getString("password", "");
+
         if (TextUtils.isEmpty(username)) username = "student";
         if (TextUtils.isEmpty(password)) password = "password";
-// Check that username and password are not empty
+
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please update your username and password",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ingresa tu usuario y contraseña, esto lo puedes hacer accediento a la configuracion",Toast.LENGTH_LONG).show();
             return;
         }
+
         Log.d(TAG, "onStarted");
         ContentValues values = new ContentValues();
         YambaClient cloud = new YambaClient(username, password);
+        
         try {
             int count = 0;
             List<Status> timeline = cloud.getTimeline(20);
@@ -55,24 +56,18 @@ public class RefreshService extends IntentService {
                 values.put(StatusContract.Column.ID, status.getId());
                 values.put(StatusContract.Column.USER, status.getUser());
                 values.put(StatusContract.Column.MESSAGE, status.getMessage());
-                values.put(StatusContract.Column.CREATED_AT, status
-                        .getCreatedAt().getTime());
-                Uri uri = getContentResolver().insert(
-                        StatusContract.CONTENT_URI, values);
+                values.put(StatusContract.Column.CREATED_AT, status.getCreatedAt().getTime());
+                Uri uri = getContentResolver().insert(StatusContract.CONTENT_URI, values);
                 if (uri != null) {
                     count++;
-                    Log.d(TAG,
-                            String.format("%s: %s", status.getUser(),
-                                    status.getMessage()));
+                    Log.d(TAG,String.format("%s: %s", status.getUser(),status.getMessage()));
                 }
             }
             if (count > 0) {
-                sendBroadcast(new Intent(
-                        "com.marakana.android.yamba.action.NEW_STATUSES").putExtra(
-                        "count", count));
+                sendBroadcast(new Intent("co.edu.udea.cmovil.gr8.yamba.action.NEW_STATUSES").putExtra("count", count));
             }
         } catch (YambaClientException e) {
-            Log.e(TAG, "Failed to fetch the timeline", e);
+            Log.e(TAG, "Fallo en tomar lso ultimos tweets", e);
             e.printStackTrace();
         }
         return;

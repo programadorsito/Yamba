@@ -29,8 +29,7 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_tweet:
                 startActivity(new Intent(this, StatusActivity.class));
                 return true;
-            default:
-                return false;
         }
+        return false;
     }
 }

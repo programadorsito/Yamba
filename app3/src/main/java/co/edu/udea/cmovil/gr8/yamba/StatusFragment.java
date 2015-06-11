@@ -26,12 +26,9 @@ import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StatusFragment extends Fragment implements View.OnClickListener {
 
-    private static final String TAG = "StatusActivity";
+    private static final String TAG = "StatusFragment";
 
     private EditText editStatus;
     private Button buttonTweet;
@@ -69,12 +66,8 @@ public class StatusFragment extends Fragment implements View.OnClickListener {
                 textCount.setTextColor(Color.GREEN);
                 buttonTweet.setEnabled(count != 0);
 
-                if (count < 50)
-                    textCount.setTextColor(Color.RED);
-                else
-                    textCount.setTextColor(defaultTextColor);
-
-
+                if (count < 50)textCount.setTextColor(Color.RED);
+                else textCount.setTextColor(defaultTextColor);
             }
         });
 

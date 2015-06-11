@@ -10,16 +10,13 @@ public class SubActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Action bar stuff
-		//getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(new Intent(this, MainActivity.class)
-					.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 		default:
 			return super.onOptionsItemSelected(item);
 		}

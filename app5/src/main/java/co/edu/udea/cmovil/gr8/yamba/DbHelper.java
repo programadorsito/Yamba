@@ -5,10 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 public class DbHelper extends SQLiteOpenHelper {
-    private static final String TAG = DbHelper.class.getSimpleName();
+
     public DbHelper(Context context) {
-        super(context, StatusContract.DB_NAME, null,
-                StatusContract.DB_VERSION);
+        super(context, StatusContract.DB_NAME, null,StatusContract.DB_VERSION);
     }
 
     @Override
@@ -19,7 +18,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 StatusContract.Column.USER,
                 StatusContract.Column.MESSAGE,
                 StatusContract.Column.CREATED_AT);
-        Log.d(TAG, "onCreate with SQL: "+sql);
         db.execSQL(sql);
     }
 

@@ -14,28 +14,31 @@ import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClient.Status;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 public class RefreshService extends IntentService {
+
     private static final String TAG = RefreshService.class.getSimpleName();
+
     public RefreshService() {
         super(TAG);
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreated");
     }
-    // Executes on a worker thread
+    
+
     @Override
     protected void onHandleIntent(Intent intent) {
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         String username=sharedPreferences.getString("username", "");
         String password=sharedPreferences.getString("password", "");
         if(TextUtils.isEmpty(username))username="student";
         if(TextUtils.isEmpty(password))password="password";
 
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please update your username and password",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Por favor actualizar nombre de usuario y contraseña",Toast.LENGTH_LONG).show();
             return;
         }
         Log.d(TAG, "onStarted");

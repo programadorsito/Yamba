@@ -53,28 +53,20 @@ public class StatusFragment extends Fragment implements View.OnClickListener {
         defaultTextColor = textCount.getTextColors().getDefaultColor();
         editStatus.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 int count = 140 - editStatus.length();
                 textCount.setText(Integer.toString(count));
-                textCount.setTextColor(Color.GREEN);
+                textCount.setTextColor(Color.RED);
                 buttonTweet.setEnabled(count != 0);
 
-                if (count < 50)
-                    textCount.setTextColor(Color.RED);
-                else
-                    textCount.setTextColor(defaultTextColor);
-
-
+                if (count < 50) textCount.setTextColor(Color.RED);
+                else textCount.setTextColor(defaultTextColor);
             }
         });
 

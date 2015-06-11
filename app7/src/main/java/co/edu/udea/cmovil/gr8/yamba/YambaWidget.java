@@ -11,16 +11,17 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-public class YambaWidget extends AppWidgetProvider { //
+public class YambaWidget extends AppWidgetProvider { 
     private static final String TAG = YambaWidget.class.getSimpleName();
 
     @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-                         int[] appWidgetIds) {Log.d(TAG, "onUpdate");
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager,int[] appWidgetIds) {
+
+        Log.d(TAG, "onUpdate");
 
         Cursor cursor = context.getContentResolver().query(StatusContract.CONTENT_URI, null, null, null,StatusContract.DEFAULT_SORT);
-        if (!cursor.moveToFirst())
-            return;
+        
+        if (!cursor.moveToFirst())return;
 
         String user = cursor.getString(cursor.getColumnIndex(StatusContract.Column.USER));
         String message = cursor.getString(cursor.getColumnIndex(StatusContract.Column.MESSAGE));
@@ -33,13 +34,9 @@ public class YambaWidget extends AppWidgetProvider { //
 
             view.setTextViewText(R.id.list_item_text_user, user);
             view.setTextViewText(R.id.list_item_text_message, message);
-            view.setTextViewText(R.id.list_item_text_created_at,
-                    DateUtils.getRelativeTimeSpanString(createdAt));
-            view.setOnClickPendingIntent(R.id.list_item_text_user,
-                    operation);
-            view.setOnClickPendingIntent(R.id.list_item_text_message,
-                    operation);
-
+            view.setTextViewText(R.id.list_item_text_created_at,DateUtils.getRelativeTimeSpanString(createdAt));
+            view.setOnClickPendingIntent(R.id.list_item_text_user,operation);
+            view.setOnClickPendingIntent(R.id.list_item_text_message,operation);
             appWidgetManager.updateAppWidget(appWidgetId, view);
         }
     }
@@ -47,10 +44,7 @@ public class YambaWidget extends AppWidgetProvider { //
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        AppWidgetManager appWidgetManager = AppWidgetManager
-                .getInstance(context);
-        this.onUpdate(context, appWidgetManager, appWidgetManager
-                .getAppWidgetIds(new ComponentName(context,
-                        YambaWidget.class)));
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        this.onUpdate(context, appWidgetManager, appWidgetManager.getAppWidgetIds(new ComponentName(context,YambaWidget.class)));
     }
 }

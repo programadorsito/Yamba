@@ -18,17 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StatusFragment extends Fragment implements View.OnClickListener {
 
-    private static final String TAG = "StatusActivity";
+    private static final String TAG = "StatusFragment";
 
     private EditText editStatus;
     private Button buttonTweet;
@@ -50,14 +45,10 @@ public class StatusFragment extends Fragment implements View.OnClickListener {
         defaultTextColor = textCount.getTextColors().getDefaultColor();
         editStatus.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -65,13 +56,8 @@ public class StatusFragment extends Fragment implements View.OnClickListener {
                 textCount.setText(Integer.toString(count));
                 textCount.setTextColor(Color.GREEN);
                 buttonTweet.setEnabled(count != 0);
-
-                if (count < 50)
-                    textCount.setTextColor(Color.RED);
-                else
-                    textCount.setTextColor(defaultTextColor);
-
-
+                if (count < 50)textCount.setTextColor(Color.RED);
+                else textCount.setTextColor(defaultTextColor);
             }
         });
 

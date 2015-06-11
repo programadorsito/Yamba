@@ -44,19 +44,19 @@ public class StatusProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         Uri ret = null;
-// Assert correct uri
+
         if (sURIMatcher.match(uri) != StatusContract.STATUS_DIR) {
             throw new IllegalArgumentException("Illegal uri: " + uri);
         }
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long rowId = db.insertWithOnConflict(StatusContract.TABLE, null,
                 values, SQLiteDatabase.CONFLICT_IGNORE);
-// Was insert successful?
+
         if (rowId != -1) {
             long id = values.getAsLong(StatusContract.Column.ID);
             ret = ContentUris.withAppendedId(uri, id);
             Log.d(TAG, "inserted uri: " + ret);
-// Notify that data for this uri has changed
+
             getContext().getContentResolver().notifyChange(uri, null);
         }
         return ret;
@@ -67,7 +67,7 @@ public class StatusProvider extends ContentProvider {
         String where;
         switch (sURIMatcher.match(uri)) {
             case StatusContract.STATUS_DIR:
-// so we count updated rows
+
                 where = selection;
                 break;
             case StatusContract.STATUS_ITEM:
@@ -85,22 +85,22 @@ public class StatusProvider extends ContentProvider {
         int ret = db.update(StatusContract.TABLE, values, where,
                 selectionArgs);
         if(ret>0) {
-// Notify that data for this uri has changed
+
             getContext().getContentResolver().notifyChange(uri, null);
         }
         Log.d(TAG, "updated records: " + ret);
         return ret;
     }
-    // Implement Purge feature
-// Use db.delete()
-// DELETE FROM status WHERE id=? AND user='?'
+    
+
+
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         String where;
         switch (sURIMatcher.match(uri)) {
             case StatusContract.STATUS_DIR:
-// so we count deleted rows
+
                 where = (selection == null) ? "1" : selection;
                 break;
             case StatusContract.STATUS_ITEM:
@@ -117,14 +117,14 @@ public class StatusProvider extends ContentProvider {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         int ret = db.delete(StatusContract.TABLE, where, selectionArgs);
         if(ret>0) {
-// Notify that data for this uri has changed
+
             getContext().getContentResolver().notifyChange(uri, null);
         }
         Log.d(TAG, "deleted records: " + ret);
         return ret;
     }
-// SELECT username, message, created_at FROM status WHERE user='bob' ORDER
-// BY created_at DESC;
+
+
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
@@ -146,7 +146,7 @@ public class StatusProvider extends ContentProvider {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = qb.query(db, projection, selection,
                 selectionArgs, null, null, orderBy);
-// register for uri changes
+
         cursor.setNotificationUri(getContext().getContentResolver(),
                 uri);
         Log.d(TAG, "queried records: "+cursor.getCount());

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Yamba-Gr8</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Configuracion</string>
-    <string name="button_tweet">Tweet</string>
-    <string name="hint_status">What\'s going on?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">Configuración</string>
+    <string name="button_tweet">Tweet</string>1
+    <string name="hint_status">Que pasa brother?</string>
     <string name="username">Nombre Usuario</string>
     <string name="password">Contraseña</string>
     <string name="titleUsername">Nombre de usuario</string>
